@@ -10,7 +10,10 @@
 <body>
 
     <div id="app">
-        <base-component title='title' />
+        <base-component v-for="(videogame, index) in catalogue"
+        :key = "index"
+        :catalogue = "videogame"
+        />
     </div>
 
     <script src='{{ asset('js/app.js') }}'></script>

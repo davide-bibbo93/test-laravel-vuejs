@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+ import axios from 'axios'
  import Vue from 'vue'
  window.Vue = Vue;
  require('./bootstrap');
@@ -30,5 +31,16 @@ Vue.component('BaseComponent', require('./components/BaseComponent.vue').default
 
 const app = new Vue({
     el: '#app',
-
+    data: {
+        catalogue:[],
+    },
+    mounted() {
+        const self = this;
+          axios.get('http://127.0.0.1:8000/api/catalogue')
+          .then(function(response) {
+            response.data.forEach((item) => {
+            self.catalogue.push(item)
+            });
+          });
+    },
 });
